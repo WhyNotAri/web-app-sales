@@ -2,9 +2,12 @@ package com.ari.webapp.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import java.util.List;
 
 @Entity
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
 @Table(name="users")
 public class User {
     @Id
@@ -18,4 +21,7 @@ public class User {
 
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    @OneToMany(mappedBy = "user")
+    private List<Order> orders;
 }
