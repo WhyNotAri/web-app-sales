@@ -3,14 +3,16 @@ package com.ari.webapp.service;
 import com.ari.webapp.model.Role;
 import com.ari.webapp.model.User;
 import com.ari.webapp.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
 public class UserService {
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
+
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     public User register(User user) {
         if(userRepository.findByEmail(user.getEmail()).isPresent()){
