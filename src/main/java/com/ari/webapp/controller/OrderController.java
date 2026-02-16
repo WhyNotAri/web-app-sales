@@ -7,6 +7,7 @@ import com.ari.webapp.model.User;
 import com.ari.webapp.service.OrderService;
 import com.ari.webapp.service.UserService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,11 +24,13 @@ public class OrderController {
     }
 
     @GetMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public List<Order> findAllOrders() {
         return orderService.findAllOrders();
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN') or #id == authentication.principal.id")
     public Order findById(@PathVariable Long id) {
         return orderService.findOrderById(id);
     }
@@ -39,11 +42,13 @@ public class OrderController {
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public Order updateOrderStatus(@PathVariable Long id, @RequestBody OrderStatus newStatus) {
         return orderService.updateOrderStatus(id, newStatus);
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> deleteOrder(@PathVariable Long id) {
         orderService.deleteOrder(id);
         return ResponseEntity.ok().build();
