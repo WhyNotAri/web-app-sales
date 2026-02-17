@@ -1,7 +1,11 @@
 package com.ari.webapp.controller;
 
+import com.ari.webapp.dto.UserDto;
+import com.ari.webapp.dto.UserRegisterDto;
+import com.ari.webapp.dto.UserUpdateDto;
 import com.ari.webapp.model.User;
 import com.ari.webapp.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -29,21 +33,22 @@ public class UserController {
         return userService.findById(id);
     }
 
-    @PostMapping
-    public User register(@RequestBody User user) {
-        return userService.register(user);
+    @PostMapping("/register")
+    public ResponseEntity<UserDto> register(@Valid @RequestBody UserRegisterDto userRegisterDto) {
+        UserDto user = userService.register(userRegisterDto);
+        return ResponseEntity.ok(user);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id) {
-        userService.delete(id);
-        return ResponseEntity.ok().build();
+    public ResponseEntity<UserDto> delete(@Valid @PathVariable Long id) {
+        UserDto deletedUser = userService.delete(id);
+        return ResponseEntity.ok(deletedUser);
     }
 
     @PutMapping("/{id}")
-    public User update(@PathVariable Long id, @RequestBody User user) {
-        user.setId(id);
-        return userService.update(user);
+    public ResponseEntity<UserDto> update(@PathVariable Long id, @Valid @RequestBody UserUpdateDto userUpdateDto) {
+        UserDto updatedUser = userService.update(id, userUpdateDto);
+        return ResponseEntity.ok(updatedUser);
     }
 
 }

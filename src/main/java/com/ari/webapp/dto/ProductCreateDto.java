@@ -7,12 +7,12 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class ProductDto {
-    @NotNull
-    private Long id;
-
+public class ProductCreateDto {
     @NotBlank
     private String name;
+
+    @NotBlank
+    private String description;
 
     @NotNull
     private Double price;

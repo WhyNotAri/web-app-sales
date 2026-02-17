@@ -13,6 +13,6 @@ public class CreateOrderRequest {
     @NotNull
     private Long userId;
 
-    @NotBlank(message = "cannot create an order without any item")
+    @NotBlank
     private List<OrderItemDto> items;
 }

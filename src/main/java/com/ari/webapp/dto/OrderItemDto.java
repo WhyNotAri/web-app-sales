@@ -10,6 +10,6 @@ public class OrderItemDto {
     @NotNull
     private Long productId;
 
-    @NotNull(message = "cannot acquire zero value from an item")
+    @NotNull
     private Integer quantity;
 }
