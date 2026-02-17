@@ -16,7 +16,7 @@ public class Product {
     private String description;
     private Integer stock;
     private String image;
-    private Integer price;
+    private Double price;
     private String discount;
 
     @ManyToOne
