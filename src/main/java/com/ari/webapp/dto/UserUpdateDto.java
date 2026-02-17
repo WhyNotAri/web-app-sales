@@ -9,14 +9,9 @@ import lombok.Setter;
 @Getter
 @NoArgsConstructor
 public class UserUpdateDto {
-    @NotBlank
     private String email;
-    @NotBlank
     private String password;
-    @NotBlank
     private String confirmPassword;
-    @NotBlank
     private String firstName;
-    @NotBlank
     private String lastName;
 }
