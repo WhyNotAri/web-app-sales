@@ -11,10 +11,10 @@ public class ProductDto {
     @NotNull
     private Long id;
 
-    @NotBlank (message = "product must have a name")
+    @NotBlank
     private String name;
 
-    @NotNull (message = "product must have a price")
+    @NotNull
     private Double price;
 
     @NotNull
