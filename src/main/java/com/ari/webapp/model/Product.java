@@ -3,6 +3,8 @@ package com.ari.webapp.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
+
 @Entity
 @Getter
 @Setter
@@ -17,7 +19,7 @@ public class Product {
     private Integer stock;
     private String image;
     private Double price;
-    private String discount;
+    private BigDecimal discount;
 
     @ManyToOne
     @JoinColumn(name="category_id")

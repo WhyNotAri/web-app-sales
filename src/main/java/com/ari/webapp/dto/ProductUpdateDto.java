@@ -4,14 +4,15 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigDecimal;
+
 @Getter
 @Setter
 @NoArgsConstructor
-public class ProductDto {
-    private Long productId;
+public class ProductUpdateDto {
     private String name;
-    private Double price;
-    private String image;
     private String description;
-    private Integer stock;
+    private String image;
+    private String price;
+    private BigDecimal discount;
 }
