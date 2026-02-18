@@ -1,11 +1,13 @@
 package com.ari.webapp.service;
 
 import com.ari.webapp.dto.UserDto;
+import com.ari.webapp.dto.UserLoginDto;
 import com.ari.webapp.dto.UserRegisterDto;
 import com.ari.webapp.dto.UserUpdateDto;
 import com.ari.webapp.model.Role;
 import com.ari.webapp.model.User;
 import com.ari.webapp.repository.UserRepository;
+import jdk.jshell.spi.ExecutionControl;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
@@ -19,7 +21,7 @@ public class UserService {
 
     public UserDto register(UserRegisterDto dto) {
         if(userRepository.findByEmail(dto.getEmail()).isPresent()){
-            throw new RuntimeException("Email Already Exists");
+            throw new RuntimeException("Email already in use: " + dto.getEmail());
         }
         User user = new User();
         user.setEmail(dto.getEmail());
@@ -30,6 +32,14 @@ public class UserService {
 
         User savedUser = userRepository.save(user);
         return new UserDto(savedUser.getEmail(), savedUser.getFirstName(), savedUser.getLastName(), savedUser.getRole());
+    }
+
+    public UserDto login(String email, String password) {
+        User user = userRepository.findByEmail(email).orElseThrow(() -> new RuntimeException("Email not found"));
+        if(!user.getPassword().equals(password)){
+            throw new RuntimeException("Incorrect password");
+        }
+        return new UserDto(user.getEmail(), user.getFirstName(), user.getLastName(), user.getRole());
     }
 
     public List<User> findAll() {
@@ -56,20 +66,14 @@ public class UserService {
 
     public UserDto update(Long id, UserUpdateDto userDto) {
         User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
-        user.setEmail(user.getEmail());
-        user.setPassword(user.getPassword());
-        user.setFirstName(user.getFirstName());
-        user.setLastName(user.getLastName());
 
-        User updatedUser = userRepository.save(user);
+        user.setEmail(userDto.getEmail());
+        user.setFirstName(userDto.getFirstName());
+        user.setLastName(userDto.getLastName());
+        user.setPassword(userDto.getPassword());
 
-        UserDto response =  new UserDto();
-        response.setId(updatedUser.getId());
-        response.setEmail(updatedUser.getEmail());
-        response.setFirstName(updatedUser.getFirstName());
-        response.setLastName(updatedUser.getLastName());
-        response.setRole(updatedUser.getRole());
+        User updatedUser =  userRepository.save(user);
 
-        return response;
+        return new UserDto(updatedUser.getEmail(), updatedUser.getFirstName(), updatedUser.getLastName(), updatedUser.getRole());
     }
 }

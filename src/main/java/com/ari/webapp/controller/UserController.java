@@ -1,6 +1,7 @@
 package com.ari.webapp.controller;
 
 import com.ari.webapp.dto.UserDto;
+import com.ari.webapp.dto.UserLoginDto;
 import com.ari.webapp.dto.UserRegisterDto;
 import com.ari.webapp.dto.UserUpdateDto;
 import com.ari.webapp.model.User;
@@ -39,16 +40,22 @@ public class UserController {
         return ResponseEntity.ok(user);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<UserDto> delete(@Valid @PathVariable Long id) {
-        UserDto deletedUser = userService.delete(id);
-        return ResponseEntity.ok(deletedUser);
+    @PostMapping("/login")
+    public ResponseEntity<UserDto> login(@Valid @RequestBody UserLoginDto userLoginDto) {
+        UserDto user = userService.login(userLoginDto.getEmail(), userLoginDto.getPassword());
+        return ResponseEntity.ok(user);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<UserDto> update(@PathVariable Long id, @Valid @RequestBody UserUpdateDto userUpdateDto) {
         UserDto updatedUser = userService.update(id, userUpdateDto);
         return ResponseEntity.ok(updatedUser);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<UserDto> delete(@Valid @PathVariable Long id) {
+        UserDto deletedUser = userService.delete(id);
+        return ResponseEntity.ok(deletedUser);
     }
 
 }
