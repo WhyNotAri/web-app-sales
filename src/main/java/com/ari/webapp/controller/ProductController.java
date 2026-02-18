@@ -1,15 +1,25 @@
 package com.ari.webapp.controller;
 
+import com.ari.webapp.dto.ProductCreateDto;
+import com.ari.webapp.dto.ProductDto;
+import com.ari.webapp.dto.ProductUpdateDto;
+import com.ari.webapp.model.Category;
 import com.ari.webapp.model.Product;
 import com.ari.webapp.service.ProductService;
+import jakarta.validation.Valid;
+import org.apache.coyote.Response;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
 @RequestMapping("/products")
 public class ProductController {
+    private static final Logger log = LoggerFactory.getLogger(ProductController.class);
     private final ProductService productService;
 
     public ProductController(ProductService productService) {
@@ -18,45 +28,53 @@ public class ProductController {
 
     @PostMapping
     @PreAuthorize("hasRole('ADMIN')")
-    public Product createProduct(@RequestBody Product product) {
-        return productService.createProduct(product);
+    public ResponseEntity<ProductDto> createProduct(@Valid @RequestBody ProductCreateDto productCreateDto) {
+        ProductDto product = productService.createProduct(productCreateDto);
+        return ResponseEntity.ok(product);
     }
 
     @GetMapping
-    public List<Product> findAll() {
-        return productService.findAll();
+    public ResponseEntity<List<ProductDto>> findAll() {
+        List<ProductDto> products = productService.findAll();
+        return ResponseEntity.ok(products);
     }
 
     @GetMapping("/{id}")
-    public Product findById(@PathVariable Long id) {
-        return productService.findById(id);
+    public ResponseEntity<ProductDto> findById(@PathVariable Long id) {
+        ProductDto product = productService.findById(id);
+        return ResponseEntity.ok(product);
     }
 
     @GetMapping("/{name}")
-    public Product findByName(@PathVariable String name) {
-        return productService.findByName(name);
+    public ResponseEntity<ProductDto> findByName(@PathVariable String name) {
+        ProductDto product = productService.findByName(name);
+        return ResponseEntity.ok(product);
     }
 
     @GetMapping("/in-stock")
-    public List<Product> inStock() {
-        return productService.inStock();
+    public ResponseEntity<List<ProductDto>> inStock() {
+        List<ProductDto> products = productService.inStock();
+        return ResponseEntity.ok(products);
     }
 
     @GetMapping("/category/{category}")
-    public List<Product> getByCategory(@PathVariable String category) {
-        return productService.getByCategory(category);
+    public ResponseEntity<List<ProductDto>> findByCategory(@PathVariable Category category) {
+        List<ProductDto> product = productService.findByCategory(category);
+        return ResponseEntity.ok(product);
     }
 
     @PutMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
-    public Product updateProduct(@PathVariable Long id, @RequestBody Product productData) {
-        return productService.updateProduct(id, productData);
+    public ResponseEntity<ProductDto> updateProduct(@PathVariable Long id, @Valid @RequestBody ProductUpdateDto productUpdateDto) {
+        ProductDto updatedProduct = productService.updateProduct(id, productUpdateDto);
+        return ResponseEntity.ok(updatedProduct);
     }
 
     @DeleteMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<?> deleteProduct(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteProduct(@PathVariable Long id) {
         productService.deleteById(id);
-        return ResponseEntity.ok().build();
+        log.info("Product successfully deleted with id {}", id);
+        return ResponseEntity.noContent().build();
     }
 }

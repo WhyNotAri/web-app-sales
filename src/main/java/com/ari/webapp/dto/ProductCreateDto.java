@@ -12,20 +12,20 @@ import lombok.Setter;
 @NoArgsConstructor
 public class ProductCreateDto {
     @NotBlank
-    private String name;
+    private String productName;
 
     @NotBlank
-    private String description;
+    private String productDescription;
 
     @NotBlank
-    private String image;
+    private String productImage;
 
     @NotNull
-    private Double price;
+    private Double productPrice;
 
     @NotNull
-    private Integer stock;
+    private Integer productStock;
 
     @NotBlank
-    private Category category;
+    private Category productCategory;
 }
