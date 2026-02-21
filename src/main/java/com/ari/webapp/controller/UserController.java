@@ -30,7 +30,7 @@ public class UserController {
 
     @GetMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN') or #id == authentication.principal.id")
-    public User findById(@PathVariable Long id) {
+    public User findById(@Valid @PathVariable Long id) {
         return userService.findById(id);
     }
 

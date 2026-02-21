@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigDecimal;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -21,7 +23,7 @@ public class ProductCreateDto {
     private String productImage;
 
     @NotNull
-    private Double productPrice;
+    private BigDecimal productPrice;
 
     @NotNull
     private Integer productStock;

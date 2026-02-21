@@ -13,6 +13,6 @@ public class ProductUpdateDto {
     private String name;
     private String description;
     private String image;
-    private Double price;
+    private BigDecimal price;
     private BigDecimal discount;
 }

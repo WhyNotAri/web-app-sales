@@ -18,7 +18,7 @@ public class Product {
     private String description;
     private Integer stock;
     private String image;
-    private Double price;
+    private BigDecimal price;
 
     @Column(precision = 5, scale = 2)
     private BigDecimal discount;

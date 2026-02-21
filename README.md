@@ -22,10 +22,16 @@ For developing purposes the security credentials are:
 - username: user
 - password: *(the one it generates and shows on the console when you run the program)*
 
-## Project Structure
-src/main/java -> backend code
+## Code Flow
+Model -> Repo -> DTOs -> Service -> Controller
 
-src/main/java/resources -> config files
+## Project Structure
+- src/main/java/com/ari/webapp/model -> entities from database
+- src/main/java/com/ari/webapp/dto -> data transfer objects
+- src/main/java/com/ari/webapp/repository -> repositories for entities
+- src/main/java/com/ari/webapp/service -> business logic
+- src/main/java/com/ari/webapp/controller -> http requests services
+- src/main/java/resources -> config files
 
 ## Notes
 - application.yaml is required in order to configure the project and access the database; the file is ignored by Git

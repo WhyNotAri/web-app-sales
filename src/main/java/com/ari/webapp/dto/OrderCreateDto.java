@@ -1,6 +1,6 @@
 package com.ari.webapp.dto;
 
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
@@ -9,10 +9,10 @@ import java.util.List;
 
 @Getter
 @Setter
-public class CreateOrderRequest {
+public class OrderCreateDto {
     @NotNull
     private Long userId;
 
-    @NotBlank
-    private List<OrderItemDto> items;
+    @NotEmpty
+    private List<OrderItemCreateDto> items;
 }
