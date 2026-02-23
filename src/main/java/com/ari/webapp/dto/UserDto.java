@@ -15,7 +15,8 @@ public class UserDto {
     private String lastName;
     private Role role;
 
-    public UserDto(String email, String firstName, String lastName, Role role) {
+    public UserDto(Long id, String email, String firstName, String lastName, Role role) {
+        this.id = id;
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;

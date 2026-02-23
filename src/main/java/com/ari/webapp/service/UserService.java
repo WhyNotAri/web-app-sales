@@ -29,7 +29,7 @@ public class UserService {
         user.setRole(Role.USER);
 
         User savedUser = userRepository.save(user);
-        return new UserDto(savedUser.getEmail(), savedUser.getFirstName(), savedUser.getLastName(), savedUser.getRole());
+        return new UserDto(savedUser.getId(), savedUser.getEmail(), savedUser.getFirstName(), savedUser.getLastName(), savedUser.getRole());
     }
 
     public UserDto login(String email, String password) {
@@ -37,7 +37,7 @@ public class UserService {
         if(!user.getPassword().equals(password)){
             throw new RuntimeException("Incorrect password");
         }
-        return new UserDto(user.getEmail(), user.getFirstName(), user.getLastName(), user.getRole());
+        return new UserDto(user.getId(),user.getEmail(), user.getFirstName(), user.getLastName(), user.getRole());
     }
 
     public List<User> findAll() {
@@ -80,6 +80,6 @@ public class UserService {
 
         User updatedUser =  userRepository.save(user);
 
-        return new UserDto(updatedUser.getEmail(), updatedUser.getFirstName(), updatedUser.getLastName(), updatedUser.getRole());
+        return new UserDto(updatedUser.getId(), updatedUser.getEmail(), updatedUser.getFirstName(), updatedUser.getLastName(), updatedUser.getRole());
     }
 }

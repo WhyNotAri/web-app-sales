@@ -25,6 +25,5 @@ public class UserRegisterDto {
     @NotBlank
     private String lastName;
 
-    @NotBlank
     private Role role;
 }
