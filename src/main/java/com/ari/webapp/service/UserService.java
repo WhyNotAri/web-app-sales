@@ -1,13 +1,11 @@
 package com.ari.webapp.service;
 
 import com.ari.webapp.dto.UserDto;
-import com.ari.webapp.dto.UserLoginDto;
 import com.ari.webapp.dto.UserRegisterDto;
 import com.ari.webapp.dto.UserUpdateDto;
 import com.ari.webapp.model.Role;
 import com.ari.webapp.model.User;
 import com.ari.webapp.repository.UserRepository;
-import jdk.jshell.spi.ExecutionControl;
 import org.springframework.stereotype.Service;
 import java.util.List;
 

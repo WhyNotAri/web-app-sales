@@ -4,9 +4,7 @@ import com.ari.webapp.dto.OrderCreateDto;
 import com.ari.webapp.dto.OrderDto;
 import com.ari.webapp.model.Order;
 import com.ari.webapp.model.OrderStatus;
-import com.ari.webapp.model.User;
 import com.ari.webapp.service.OrderService;
-import com.ari.webapp.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,11 +17,9 @@ import java.util.List;
 @RequestMapping("/orders")
 public class OrderController {
     private final OrderService orderService;
-    private final UserService userService;
 
-    public OrderController(OrderService orderService, UserService userService) {
+    public OrderController(OrderService orderService) {
         this.orderService = orderService;
-        this.userService = userService;
     }
 
     @GetMapping

@@ -8,10 +8,8 @@ import com.ari.webapp.repository.OrderRepository;
 import com.ari.webapp.repository.ProductRepository;
 import com.ari.webapp.repository.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
-import org.aspectj.weaver.ast.Or;
 import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
