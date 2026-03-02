@@ -2,6 +2,7 @@ package com.ari.webapp.dto;
 
 import com.ari.webapp.model.Category;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,6 +28,6 @@ public class ProductCreateDto {
     @NotNull
     private Integer productStock;
 
-    @NotBlank
+    @NotNull(message = "Must be part of a category")
     private Category productCategory;
 }

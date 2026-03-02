@@ -32,7 +32,7 @@ public class ProductService {
         product.setCategory(productCreateDto.getProductCategory());
         product.setStock(productCreateDto.getProductStock());
         Product savedProduct = productRepository.save(product);
-        return new ProductDto(savedProduct.getName(),
+        return new ProductDto(savedProduct.getId(), savedProduct.getName(),
                 savedProduct.getPrice(), savedProduct.getImage(),
                 savedProduct.getDescription(), savedProduct.getStock(),
                 savedProduct.getCategory());
@@ -42,6 +42,7 @@ public class ProductService {
         return productRepository.findAll()
                 .stream()
                 .map(product -> new ProductDto(
+                        product.getId(),
                         product.getName(),
                         product.getPrice(),
                         product.getImage(),
@@ -54,19 +55,20 @@ public class ProductService {
 
     public ProductDto findById(Long id) {
         Product product = productRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Product with id " + id + " not found"));
-        return new ProductDto(product.getName(), product.getPrice(), product.getImage(), product.getDescription(), product.getStock(), product.getCategory());
+        return new ProductDto(product.getId(), product.getName(), product.getPrice(), product.getImage(), product.getDescription(), product.getStock(), product.getCategory());
     }
 
     public ProductDto findByName(String name) {
         Product product = productRepository.findByName(name).orElseThrow(() ->
                 new EntityNotFoundException("Product with name " + name + " not found"));
-        return new ProductDto(product.getName(), product.getPrice(), product.getImage(), product.getDescription(), product.getStock(), product.getCategory());
+        return new ProductDto(product.getId(), product.getName(), product.getPrice(), product.getImage(), product.getDescription(), product.getStock(), product.getCategory());
     }
 
     public List<ProductDto> findByCategory(Category category) {
         List<Product> products = productRepository.findByCategory(category);
         return products.stream()
                 .map(product -> new ProductDto(
+                        product.getId(),
                         product.getName(), product.getPrice(), product.getImage(),
                         product.getDescription(), product.getStock(), product.getCategory()))
                 .collect(Collectors.toList());
@@ -76,6 +78,7 @@ public class ProductService {
         List<Product> products = productRepository.findByStockGreaterThan(0);
         return products.stream()
                 .map(product -> new ProductDto(
+                        product.getId(),
                         product.getName(), product.getPrice(), product.getImage(),
                         product.getDescription(), product.getStock(), product.getCategory()
                 )).collect(Collectors.toList());
@@ -100,7 +103,7 @@ public class ProductService {
         }
 
         Product updatedProduct = productRepository.save(product);
-        return new ProductDto(updatedProduct.getName(), updatedProduct.getPrice(),
+        return new ProductDto(updatedProduct.getId(), updatedProduct.getName(), updatedProduct.getPrice(),
                 updatedProduct.getDescription(), updatedProduct.getImage(),
                 updatedProduct.getStock(), updatedProduct.getCategory());
     }

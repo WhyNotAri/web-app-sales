@@ -19,7 +19,8 @@ public class ProductDto {
     private Integer stock;
     private Category category;
 
-    public ProductDto(String name, BigDecimal price, String image, String description, Integer stock, Category category) {
+    public ProductDto(Long id, String name, BigDecimal price, String image, String description, Integer stock, Category category) {
+        this.id = id;
         this.name = name;
         this.price = price;
         this.image = image;

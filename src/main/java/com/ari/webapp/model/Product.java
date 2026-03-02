@@ -22,7 +22,6 @@ public class Product {
     @Column(precision = 5, scale = 2)
     private BigDecimal discount;
 
-    @ManyToOne
-    @JoinColumn(name="category_id")
+    @Enumerated(EnumType.STRING)
     private Category category;
 }
