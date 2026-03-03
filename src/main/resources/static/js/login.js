@@ -21,7 +21,7 @@ form.addEventListener("submit", async (e) => {
 
     const data = await response.json();
 
-    window.location.href = "/products";
+    window.location.href = "/dashboard.html";
 
   } catch (error) {
     alert(error.message);
