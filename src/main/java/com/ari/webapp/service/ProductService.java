@@ -86,20 +86,27 @@ public class ProductService {
 
     public ProductDto updateProduct(Long id, ProductUpdateDto productUpdateDto) {
         Product product = productRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Product not found"));
-        if (product.getName() != null) {
-            product.setName(productUpdateDto.getName());
+
+        if (productUpdateDto.getProductName() != null) {
+            product.setName(productUpdateDto.getProductName());
         }
-        if (product.getDescription() != null) {
-            product.setDescription(productUpdateDto.getDescription());
+        if (productUpdateDto.getProductDescription() != null) {
+            product.setDescription(productUpdateDto.getProductDescription());
         }
-        if (product.getImage() != null) {
-            product.setImage(productUpdateDto.getImage());
+        if (productUpdateDto.getProductImage() != null) {
+            product.setImage(productUpdateDto.getProductImage());
         }
-        if (product.getPrice() != null) {
-            product.setPrice(productUpdateDto.getPrice());
+        if (productUpdateDto.getProductPrice() != null) {
+            product.setPrice(productUpdateDto.getProductPrice());
         }
-        if (product.getDiscount() != null) {
-            product.setDiscount(productUpdateDto.getDiscount());
+        if (productUpdateDto.getProductDiscount() != null) {
+            product.setDiscount(productUpdateDto.getProductDiscount());
+        }
+        if (productUpdateDto.getProductStock() != null) {
+            product.setStock(productUpdateDto.getProductStock());
+        }
+        if (productUpdateDto.getProductCategory() != null) {
+            product.setCategory(productUpdateDto.getProductCategory());
         }
 
         Product updatedProduct = productRepository.save(product);
