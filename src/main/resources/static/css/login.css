@@ -9,6 +9,7 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    background-color: #f8f8f8;
 }
 
 .login-div {
@@ -24,12 +25,14 @@ body {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    background: white;
 }
 
 .login-form h1 {
     text-align: center;
     margin: 0;
     font-size: 24px;
+    color: #0F4C75;
 }
 
 .email-field {
@@ -47,7 +50,7 @@ input {
 }
 
 input:focus {
-    border-color: black;
+    border-color: #00B4DB;
     outline: none;
 }
 
@@ -67,7 +70,7 @@ input:focus {
     padding: 12px;
     border-radius: 12px;
     border: none;
-    background: black;
+    background: #0F4C75;
     color: white;
     font-size: 14px;
     cursor: pointer;
@@ -75,5 +78,14 @@ input:focus {
 }
 
 .submit-button:hover {
-    opacity: 0.8;
+    background: #00B4DB;
+}
+
+.options a {
+    color: #0F4C75;
+    text-decoration: none;
+}
+
+.options a:hover {
+    text-decoration: underline;
 }
