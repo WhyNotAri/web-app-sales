@@ -1,37 +1,122 @@
-## Web App sales
-This project is meant to be a fully functional Web App for personal sales. It is built with backend on Spring Boot, using React as the frontend framework all connecting to a database on PostgreSQL. Trying to use the best development practices
+Web Sales Dashboard
+===================
+
+This project is meant to be a fully functional e-commerce web app for managing and selling products online. Built with Spring Boot backend, modern responsive frontend (HTML + CSS + JavaScript), and Supabase database integration, following best development practices.
+
+## Key Features
+
+- **Product Management**: Browse, filter, and search products by category
+- **User Authentication**: Secure login and registration system
+- **Shopping Dashboard**: Modern, responsive interface with attractive UI
+- **Category Filtering**: Filter products by Electronics, Clothing, Home, and more
+- **Search Functionality**: Quick product search by name or category
+- **User Profile**: View and manage user account settings
+- **Order Tracking**: View order history and status
+- **Responsive Design**: Beautiful interface optimized for desktop and mobile
+
+## Tech Stack
+
+**Backend**
+- Java 17
+- Spring Boot
+- Spring Security
+- Spring Data JPA
+- Maven
+
+**Frontend**
+- HTML5
+- CSS3
+- JavaScript
+
+**Database**
+- Supabase (PostgreSQL)
 
 ## Requirements
-- Java 17
-- Maven
-- Supabase
 
-## Config
-As it is connected to supabase you need to connect to be part of the project in order to connect to the database. The 'application.yml' is hidden and replaced for an 'application-example.yml' to show the configuration used in the project such as the database, JPA, etc. but without sensitive information like usernames and passwords
+- Java 17 or higher
+- Maven
+- Supabase account and project
 
 ## Local Setup
-1. Clone the repo
-2. Create the 'application.yml' file and copy the configuration on the example with the appropiate values
-3. Run the project
 
-## API Endpoints
-To access the endpoints, on the web browser go to the base URL:
-http://localhost:8080
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd web-app-sales
+   ```
 
-For developing purposes the security credentials are:
-- username: user
-- password: *(the one it generates and shows on the console when you run the program)*
+2. **Configure the application**
+   - Copy `application-example.yaml` to `application.yaml`
+   - Update with your Supabase credentials:
+     ```yaml
+     spring:
+       datasource:
+         url: your_supabase_url
+         username: your_username
+         password: your_password
+     ```
 
-## Code Flow
-Model -> Repo -> DTOs -> Service -> Controller
+3. **Access the application**
+   - Open your browser and navigate to: `http://localhost:8080`
+
+## Default Credentials (Development)
+
+For local development, Spring Security generates default credentials:
+- **Username**: `user`
+- **Password**: *(displayed in console output when running the application)*
+
+## Project Architecture
+
+```
+Model → Repository → DTO → Service → Controller
+```
 
 ## Project Structure
-- src/main/java/com/ari/webapp/model -> entities from database
-- src/main/java/com/ari/webapp/dto -> data transfer objects
-- src/main/java/com/ari/webapp/repository -> repositories for entities
-- src/main/java/com/ari/webapp/service -> business logic
-- src/main/java/com/ari/webapp/controller -> http requests services
-- src/main/java/resources -> config files
 
-## Notes
-- application.yaml is required in order to configure the project and access the database; the file is ignored by Git
+```
+src/main/
+├── java/com/ari/webapp/
+│   ├── model/          → Database entities
+│   ├── dto/            → Data Transfer Objects
+│   ├── repository/     → Data access layer
+│   ├── service/        → Business logic
+│   ├── controller/     → Endpoints
+│   └── config/         → Configuration
+└── resources/
+    ├── application.yaml    → Database config
+    └── static/             → Frontend files
+        ├── html/           → Web pages
+        ├── css/            → Styles
+        ├── js/             → JavaScript
+        └── images/         → Images
+```
+
+## API Endpoints
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/users/login` | User login |
+| POST | `/users/register` | Create new user account |
+| GET | `/products` | Get all products |
+| GET | `/products/{id}` | Get product details |
+| POST | `/orders` | Create new order |
+| GET | `/orders` | Get user orders |
+
+## Development Notes
+
+- `application.yaml` is required and ignored by Git for security
+- Use `application-example.yaml` as a template
+- Never commit sensitive credentials
+- All security configuration is in `config/SecurityConfig.java`
+- Frontend assets are served from `resources/static/`
+
+## Contributing
+
+1. Create a feature branch (`git checkout -b feature/AmazingFeature`)
+2. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+3. Push to the branch (`git push origin feature/AmazingFeature`)
+4. Open a Pull Request
+
+## License
+
+This project is private and intended for personal use as well as learning experience.
