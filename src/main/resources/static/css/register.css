@@ -12,13 +12,13 @@ body {
     background-color: #f8f8f8;
 }
 
-.login-div {
+.register-div {
     width: 100%;
-    max-width: 400px;
+    max-width: 500px;
     padding: 20px;
 }
 
-.login-form {
+.register-form {
     padding: 25px;
     border-radius: 20px;
     box-shadow: 0 15px 40px rgba(0,0,0,0.2);
@@ -29,7 +29,7 @@ body {
     font-size: 15px;
 }
 
-.login-form h1 {
+.register-form h1 {
     text-align: center;
     margin: 0;
     font-size: 24px;
@@ -37,6 +37,24 @@ body {
 }
 
 .email-field {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.name-fields {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5px;
+}
+
+.first-name-field {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.last-name-field {
     display: flex;
     flex-direction: column;
     gap: 5px;
@@ -61,11 +79,16 @@ input:focus {
     gap: 5px;
 }
 
+.confirm-password-field {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
 .options {
     display: flex;
     justify-content: space-between;
     font-size: 14px;
-    padding: 5px 0;
 }
 
 .submit-button {
@@ -83,14 +106,24 @@ input:focus {
     background: #00B4DB;
 }
 
-.options a {
-    color: #0F4C75;
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 600;
+.options {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
 }
 
-.register-option {
+.options a {
+    color: #0F4C75;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.options a:hover {
+    text-decoration: underline;
+}
+
+.login-option {
     display: flex;
     justify-content: center;
     gap: 5px;
@@ -98,16 +131,14 @@ input:focus {
     padding: 5px 0;
 }
 
-.register-option a {
+.login-option a {
     color: #0F4C75;
-    text-decoration: none;
     font-weight: 600;
+    text-decoration: none;
 }
 
-.options a:hover {
-    text-decoration: underline;
-}
-
-.register-option a:hover {
-    text-decoration: underline;
+@media (max-width: 480px) {
+    .name-fields {
+        grid-template-columns: 1fr;
+    }
 }

@@ -1,4 +1,4 @@
-Web Sales Dashboard
+Web App Sales
 ===================
 
 This project is meant to be a fully functional e-commerce web app for managing and selling products online. Built with Spring Boot backend, modern responsive frontend (HTML + CSS + JavaScript), and Supabase database integration, following best development practices.
@@ -85,7 +85,6 @@ src/main/
 └── resources/
     ├── application.yaml    → Database config
     └── static/             → Frontend files
-        ├── html/           → Web pages
         ├── css/            → Styles
         ├── js/             → JavaScript
         └── images/         → Images
